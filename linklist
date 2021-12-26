@@ -5,7 +5,7 @@ struct node
 {
         int data;
         struct node *next;
-}*start; 
+}*start;
 
 
 create_list()
@@ -75,7 +75,7 @@ insert_mid()
         for(i=1;i<pos-i;i++);
         {
                 q=q->next;
-                if(q=NULL)
+                if(q==NULL)
                 {
                         printf("There are less %d elements in the list.",pos);
                         return;
@@ -101,7 +101,7 @@ insert_end()
         {
                 q=q->next;
         }
-        q->next=temp;        
+        q->next=temp;
 }
 
 
@@ -126,7 +126,7 @@ delete_mid()
         for(i=1;i<pos-i;i++);
         {
                 q=q->next;
-                if(q=NULL)
+                if(q==NULL)
                 {
                         printf("There are less %d elements in the list.",pos);
                 }
@@ -148,9 +148,47 @@ delete_end()
         }
         temp=q->next;
         q->next=NULL;
-        free(temp); 
+        free(temp);
 }
 
+count()
+{
+    int count=0;
+    struct node *q;
+    q=malloc(sizeof (struct node));
+    q=start;
+    while(q!=NULL)
+    {
+        q=q->next;
+        count++;
+    }
+    printf("Total no. of node %d",count);
+}
+
+
+search()
+{
+    int item,pos=1;
+    struct node *q;
+    q=malloc(sizeof (struct node));
+    q=start;
+    printf("Enter the item we want to search:");
+    scanf("%d",&item);
+    while(q!=NULL)
+    {
+        if(q->data=item)
+        {
+            printf("%d found at position %d",item,pos);
+            return;
+        }
+        q=q->next;
+        pos++;
+        if(q==NULL)
+        {
+            printf("Item not found.");
+        }
+    }
+}
 
 main()
 {
@@ -166,7 +204,10 @@ main()
                 printf("6.Delete at beginning \n");
                 printf("7.Delete at middle \n");
                 printf("8.Delete at end \n");
-                printf("9.Quit \n");
+                printf("9.Count the no. of nodes \n");
+                printf("10. Search the item \n");
+                printf("11.Quit \n");
+                printf("\nYour choice:");
                 scanf("%d",&choice);
                 switch(choice)
                 {
@@ -177,13 +218,13 @@ main()
                                    create_list();
                                 }
                                 break;
-                        case 2: 
+                        case 2:
                                 display ();
                                 break;
-                        case 3: 
+                        case 3:
                                 insert_beg();
                                 break;
-                        case 4: 
+                        case 4:
                                 insert_mid();
                                 break;
                         case 5:
@@ -199,6 +240,12 @@ main()
                                 delete_end();
                                 break;
                         case 9:
+                                count();
+                                break;
+                        case 10:
+                                search();
+                                break;
+                        case 11:
                                 exit(1);
                                 break;
                         default:

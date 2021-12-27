@@ -190,6 +190,32 @@ search()
     }
 }
 
+reverse()
+{
+    struct node *p1, *p2, *p3;
+    p1=malloc(sizeof(struct node));
+    p2=malloc(sizeof(struct node));
+    p3=malloc(sizeof(struct node));
+    if(start->next==NULL)
+    {
+        printf("Only one element");
+        return;
+    }
+    p1=start;
+    p2=p1->next;
+    p3=p2->next;
+    p1->next=NULL;
+    p2->next=p1;
+    while(p3!=NULL)
+    {
+        p1=p2;
+        p2=p3;
+        p3=p2->next;
+        p2->next=p1;
+    }
+    start=p2;
+}
+
 main()
 {
         int choice,n,m,pos,i;
@@ -205,8 +231,9 @@ main()
                 printf("7.Delete at middle \n");
                 printf("8.Delete at end \n");
                 printf("9.Count the no. of nodes \n");
-                printf("10. Search the item \n");
-                printf("11.Quit \n");
+                printf("10.Search the item \n");
+                printf("11.Reverse\n");
+                printf("12.Quit \n");
                 printf("\nYour choice:");
                 scanf("%d",&choice);
                 switch(choice)
@@ -246,6 +273,9 @@ main()
                                 search();
                                 break;
                         case 11:
+                                reverse();
+                                break;
+                        case 12:
                                 exit(1);
                                 break;
                         default:

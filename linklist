@@ -165,7 +165,6 @@ count()
     printf("Total no. of node %d",count);
 }
 
-
 search()
 {
     int item,pos=1;
@@ -176,19 +175,20 @@ search()
     scanf("%d",&item);
     while(q!=NULL)
     {
-        if(q->data=item)
+        if(q->data==item)
         {
-            printf("%d found at position %d",item,pos);
-            return;
+            printf("%d found at position %d\n",item,pos);
+            return 0;
         }
         q=q->next;
         pos++;
-        if(q==NULL)
-        {
-            printf("Item not found.");
-        }
+    }
+    if(q==NULL)
+    {
+        printf("Item not found.\n");
     }
 }
+
 
 reverse()
 {
